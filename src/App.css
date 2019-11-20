@@ -1,22 +1,81 @@
-.App {
+body {
+  width: 700px;
+}
+
+header {
+  border: solid 1px #BDBEBC;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 700px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.people {
+  border: solid 1px #BDBEBC;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-top: 50px;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background-image: url("https://randomuser.me/api/portraits/men/28.jpg");
+}
+
+section {
+  width: 700px;
+  height: 300px;
+  border-left: solid 1px #BDBEBC;
+  border-right: solid 1px #BDBEBC;
+  border-bottom: solid 1px #BDBEBC;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.default_information {
+  padding-top: 120px;
+  color: #999;
+  font-size: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.select_information {
+  height: 60px;
+  margin: 5px 0px;
+  font-size: 40px;
+}
+
+ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0;
 }
 
-.App-link {
-  color: #09d3ac;
+li {
+  list-style: none;
+}
+
+li img {
+  width: 30%;
+  cursor: pointer;
+}
+
+button {
+  width: 80px;
+  height: 30px;
+  margin: 10px 310px;
+  padding: 0;
+  font-weight: 700;
+  border: solid 1px #BDBEBC;
+  border-radius: 5px;
 }
