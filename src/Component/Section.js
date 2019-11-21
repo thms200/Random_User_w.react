@@ -7,6 +7,7 @@ import Name from './name.jpg';
 import Phone from './phone.jpg';
 import Location from './location.jpg';
 import Mail from './mail.jpg';
+import axios from 'axios'
 
 class Section extends Component {
   constructor(props) {
@@ -70,42 +71,88 @@ class Section extends Component {
     }
   }
 
+  makeNew() { //axios 사용
+		axios.get("https://randomuser.me/api/?results=1")
+		.then(function(response){
+      const data = response.data.results[0]
+      console.log(data)
+      const name = data.name.first +  " " + data.name.last;
+      const phone = data.phone;
+      const address = data.location.street.number + " " + data.location.street.name + data.location.city;
+      const mail = data.email;
+      const intro = [name, "My name is"];
+      const arr = [[name, phone, address, mail], intro];
+      return arr;
+    })
+    .then((arr) => {
+      this.setState({user: arr[0]});
+      this.setState({intro: arr[1]});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  // makeNew() { //fetch 사용
+  //   fetch("https://randomuser.me/api/?results=1")
+  //   .then(function(response){
+  //     return response.json();
+  //   })
+  //   .then(function(text) {
+  //     let data = text["results"][0];
+  //     return data;
+  //   })
+  //   .then((arr) => {
+  //     const name = arr.name.first +  " " + arr.name.last;
+  //     const phone = arr.phone;
+  //     const address = arr.location.street.number + " " + arr.location.street.name + arr.location.city;
+  //     const mail = arr.email;
+  //     const data = [name, phone, address, mail];
+  //     this.setState({user: data});
+  //     this.setState({intro: [name, "My name is"]})
+  //   });
+  // }
+
   render() {
     return (
       <section>
         <div className="default_information">{this.makeDefault()}</div>
         <div className="select_information">{this.makeSelect()}</div>
         <ul className="list_information"  onClick={this.makeClick.bind(this)}>
-        <li className="name">
-          <img 
-            className="li" 
-            src={this.state.isClick === 0 ? this.state.changeImg[0] : this.state.originalImg[0]}
-            alt="name"
-          />
-        </li>
-        <li className="phone">
-          <img 
-            className="li" 
-            src={this.state.isClick === 1 ? this.state.changeImg[1] : this.state.originalImg[1]} 
-            alt="phone"
-          />
-        </li>
-        <li className="location">
-          <img 
-            className="li" 
-            src={this.state.isClick === 2 ? this.state.changeImg[2] : this.state.originalImg[2]} 
-            alt="location"
-          />
-        </li>
-        <li className="mail">
-          <img 
-            className="li" 
-            src={this.state.isClick === 3 ? this.state.changeImg[3] : this.state.originalImg[3]}
-            alt="mail"
-          />
-        </li>
-      </ul>
+          <li className="name">
+            <img 
+              className="li" 
+              src={this.state.isClick === 0 ? this.state.changeImg[0] : this.state.originalImg[0]}
+              alt="name"
+            />
+          </li>
+          <li className="phone">
+            <img 
+              className="li" 
+              src={this.state.isClick === 1 ? this.state.changeImg[1] : this.state.originalImg[1]} 
+              alt="phone"
+            />
+          </li>
+          <li className="location">
+            <img 
+              className="li" 
+              src={this.state.isClick === 2 ? this.state.changeImg[2] : this.state.originalImg[2]} 
+              alt="location"
+            />
+          </li>
+          <li className="mail">
+            <img 
+              className="li" 
+              src={this.state.isClick === 3 ? this.state.changeImg[3] : this.state.originalImg[3]}
+              alt="mail"
+            />
+          </li>
+        </ul>
+        <button onClick={this.makeNew.bind(this)}>
+          Click
+        </button>
       </section>
+      
     )
   }
 }
